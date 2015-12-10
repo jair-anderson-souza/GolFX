@@ -1,6 +1,5 @@
 package io.github.jass2125.core;
 
-import java.util.List;
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -56,12 +55,14 @@ public class VitrineApp extends Application{
 	
 	private void initComponents(){
 		panel = new AnchorPane();
-		panel.setPrefSize(800, 600);
+		panel.setLayoutY(30);
+		panel.setPrefSize(780, 550);
 		
 		txtPesquisa = new TextField();
 		txtPesquisa.setPromptText("Digite o item para pesquisa");
-		txtPesquisa.setLayoutX(100);
-		txtPesquisa.setLayoutY(150);
+		txtPesquisa.setLayoutY(-27.5);
+		
+		
 		tbVitrine = new TableView<ItensProperty>();
 		tbVitrine.setPrefSize(780, 550);
 		columnProduto = new TableColumn<ItensProperty, String>();
@@ -92,6 +93,7 @@ public class VitrineApp extends Application{
 				}
 			}
 		});
+		
 	}
 	private void initItens(){
 		Vitrine v = new Vitrine();
