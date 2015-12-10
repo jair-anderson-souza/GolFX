@@ -52,10 +52,18 @@ public class LoginApp extends Application {
 		
 	}
 	
-	private void logOnApp(){
-		if(txtLogin.getText().equals("jass2125") && txtPassword.equals("123")){
-			
+	private void logOnApp() {
+		if(txtLogin.getText().equals("admin") || txtPassword.equals("12")){
+			System.out.println("Entrou");
+			try{
+				new VitrineApp().start(new Stage());
+				LoginApp.stage.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}else{
+			System.out.println("Entrou");
+
 			JOptionPane.showMessageDialog(null, "Login e/ou senha invalidos", "Erro", JOptionPane.ERROR_MESSAGE);
 		}
 	}
