@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Vitrine {
-	private List<Produto> produtos = new ArrayList();
+	private static List<Produto> produtos = new ArrayList();
 	
 	public void add(Produto ... produto){
 		for(Produto it : produto){

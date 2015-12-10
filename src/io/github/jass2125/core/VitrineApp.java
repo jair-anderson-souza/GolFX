@@ -1,8 +1,6 @@
 package io.github.jass2125.core;
 
 import java.util.List;
-import java.util.Observable;
-
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -37,16 +35,16 @@ public class VitrineApp extends Application{
 			this.preco = new SimpleDoubleProperty(preco);
 		}
 
-		public SimpleStringProperty getProduto() {
-			return produto;
+		public String getProduto() {
+			return produto.getValue();
 		}
 
 		public void setProduto(SimpleStringProperty produto) {
 			this.produto = produto;
 		}
 
-		public SimpleDoubleProperty getPreco() {
-			return preco;
+		public Double getPreco() {
+			return preco.getValue();
 		}
 
 		public void setPreco(SimpleDoubleProperty preco) {
@@ -62,13 +60,18 @@ public class VitrineApp extends Application{
 		
 		txtPesquisa = new TextField();
 		txtPesquisa.setPromptText("Digite o item para pesquisa");
-		
+		txtPesquisa.setLayoutX(100);
+		txtPesquisa.setLayoutY(150);
 		tbVitrine = new TableView<ItensProperty>();
 		tbVitrine.setPrefSize(780, 550);
 		columnProduto = new TableColumn<ItensProperty, String>();
 		columnPreco = new TableColumn<ItensProperty, Double>();
 		columnProduto.setCellValueFactory(new PropertyValueFactory<ItensProperty, String>("produto"));
+		columnProduto.setText("Produto");
+		
 		columnPreco.setCellValueFactory(new PropertyValueFactory<ItensProperty, Double>("preco"));
+		columnPreco.setText("Preço");
+		
 		tbVitrine.getColumns().addAll(columnProduto, columnPreco);
 		tbVitrine.setItems(listaItens);
 		panel.getChildren().addAll(txtPesquisa, tbVitrine);
@@ -83,7 +86,7 @@ public class VitrineApp extends Application{
 			@Override
 			public void handle(ActionEvent event) {
 				if(!txtPesquisa.getText().equals("")){
-					tbVitrine.setItems(finItems());
+					tbVitrine.setItems(findItems());
 				}else {
 					tbVitrine.setItems(listaItens);
 				}
@@ -98,10 +101,10 @@ public class VitrineApp extends Application{
 		}
 	}
 	
-	private ObservableList<ItensProperty> finItems(){
+	private ObservableList<ItensProperty> findItems(){
 		ObservableList<ItensProperty> itensEncontrados = FXCollections.observableArrayList();
 		for (ItensProperty it : listaItens) {
-			if (((List<ItensProperty>) it.getProduto()).contains(txtPesquisa.getText())) {
+			if ((it.getProduto()).contains(txtPesquisa.getText())) {
 				itensEncontrados.add(it);
 			}
 		}
