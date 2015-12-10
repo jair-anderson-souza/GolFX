@@ -53,7 +53,7 @@ public class LoginApp extends Application {
 	}
 	
 	private void logOnApp() {
-		if(txtLogin.getText().equals("admin") || txtPassword.equals("12")){
+		if(txtLogin.getText().equals("admin") || txtPassword.equals("123")){
 			System.out.println("Entrou");
 			try{
 				new VitrineApp().start(new Stage());

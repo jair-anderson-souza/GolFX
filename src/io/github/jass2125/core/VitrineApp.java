@@ -3,6 +3,8 @@ package io.github.jass2125.core;
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -92,6 +94,23 @@ public class VitrineApp extends Application{
 					tbVitrine.setItems(listaItens);
 				}
 			}
+		});
+		
+		tbVitrine.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ItensProperty>() {
+			
+			public void changed(ObservableValue<? extends ItensProperty> value, ItensProperty oldItem, ItensProperty newItem) {
+				
+				ItemApp.setProduto(new Produto(newItem.getProduto(), newItem.getPreco()));
+				ItemApp.setIndex(tbVitrine.getSelectionModel().getSelectedIndex());
+				
+				try{
+					new ItemApp().start(new Stage());
+					
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+			};
 		});
 		
 	}
